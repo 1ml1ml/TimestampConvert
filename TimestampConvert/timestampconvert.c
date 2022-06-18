@@ -87,7 +87,7 @@ void timestampMSecToDate(unsigned long long nTimestampMSec, unsigned short* pYea
 	if (NULL != pMSec) { *pMSec = mSecToLocalMSec(nMsec); }
 }
 
-unsigned long long dateToTimestampMSec(Date* pDate)
+unsigned long long dateToTimestampMSec(DateTime* pDate)
 {
 	if (NULL != pDate)
 	{
@@ -111,10 +111,10 @@ void convertTimestamp(TimestampInfo* pTimestamp, ConvertType type)
 		switch (type)
 		{
 		case ENUM_TIMESTAMP_TO_DATE:
-			timestampMSecToDate(pTimestamp->nTimestampMSec + nCorrectTimeMSec, &pTimestamp->date.nYear, &pTimestamp->date.nMonth, &pTimestamp->date.nDay, &pTimestamp->date.nHour, &pTimestamp->date.nMinute, &pTimestamp->date.nSec, &pTimestamp->date.nMSec);
+			timestampMSecToDate(pTimestamp->nTimestampMSec + nCorrectTimeMSec, &pTimestamp->dateTime.nYear, &pTimestamp->dateTime.nMonth, &pTimestamp->dateTime.nDay, &pTimestamp->dateTime.nHour, &pTimestamp->dateTime.nMinute, &pTimestamp->dateTime.nSec, &pTimestamp->dateTime.nMSec);
 			break;
 		case ENUM_DATE_TO_TIMESTAMP:
-			pTimestamp->nTimestampMSec = dateToTimestampMSec(&pTimestamp->date) - nCorrectTimeMSec;
+			pTimestamp->nTimestampMSec = dateToTimestampMSec(&pTimestamp->dateTime) - nCorrectTimeMSec;
 			break;
 		}
 	}
